@@ -1,0 +1,44 @@
+.h2 {
+    text-align: center;
+}
+
+.loginBox {
+    width: 400px;
+    height: 600px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 5px 10px #272525;
+}
+
+.inputsBox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    margin-top: 1rem;
+    background-color: transparent;
+    transition: all 1s ease-in-out;
+}
+
+.input:hover {
+    border-bottom: 1px solid blue;
+}
+
+.loginBtn {
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    background-color: blue;
+    transition: all 1s ease-in-out;
+    color: white;
+    font-weight: bold;
+}
+
+.loginBtn:hover {
+    background-color: teal;
+}
+
