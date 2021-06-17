@@ -11,22 +11,34 @@ export default function Home() {
 
   const {user} = useAuth();
 
+  console.log("USER: " + JSON.stringify(user));
+
   return (
-    <div className={styles.loginBox}>
-      <h2 className={styles.h2}>Login</h2>'
-      <div className={styles.inputsBox}>
-        <span>Email</span>
-        <input className={styles.input} type="text" />
-        <span>Password</span>
-        <input className={styles.input} type="password" />
+    <div className={styles.container}>
+      <div className={styles.loginBox}>
+        <h1 className={styles.h1}>Login</h1>
+        <div style={{textAlign:'center'}}>User ID: {user ? user.uid : "No user signed in"}</div>
+        <div className={styles.inputsBox}>
+          <div className={styles.inputContainer}>
+            <div className={styles.label}>Email</div>
+            <input className={styles.input} type="text" />
+            <div className={styles.underline}></div>
+          </div>
+          <div className={styles.inputContainer}>
+            <div className={styles.label}>Password</div>
+            <input className={styles.input} type="password" />
+            <div className={styles.underline}></div>
+          </div>
+        </div>
+        <div className={styles.buttonContainer}>
+          <button className={styles.loginBtn} isdisabled={user ? "true" : "false"}>
+            <Link href="/login"><a>SUBMIT</a></Link>
+          </button>
+        </div>
+        
       </div>
-      <button className={styles.loginBtn} isDisabled={!user}>
-        <Link href="/authenticated"><a>Go to authenticated route</a></Link>
-      </button>
-      <button className={styles.loginBtn} isDisabled={user}>
-        <Link href="/login"><a>Login</a></Link>
-      </button>
     </div>
+    
 
 
 
