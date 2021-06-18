@@ -51,22 +51,24 @@
 }
 
 .underline {
-    width: 100%;
+    width: 1%;
     height: 10px;
     visibility: hidden;
     background-color: blue;
     opacity:0;
-    transition: all .5s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 .input:hover + .underline {
     visibility: visible;
     height: 3px;
     opacity:1;
+    width: 100%;
+    background-color: teal;
 }
 
 .loginBtn {
-    width: 200px;
+    width: 75%;
     height: 30px;
     border: none;
     border-radius: 5px;

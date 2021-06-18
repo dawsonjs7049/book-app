@@ -2,16 +2,34 @@ import Head from 'next/head'
 import Image from 'next/image'
 // import styles from '../styles/Home.module.css'
 import styles from '../styles/Login.module.css';
-import React from "react";
+import React, {useState} from "react";
 import Link from "next/link";
 import {useAuth} from "../auth";
-
+import firebaseClient from "../firebaseClient";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 export default function Home() {
+  firebaseClient();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const {user} = useAuth();
 
   console.log("USER: " + JSON.stringify(user));
+
+  const handleLogin = async () => {
+    await firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(function () {
+        window.location.href = "/home";
+      })
+      .catch(function (error) {
+        const message = error.message;
+        console.log("error: " + message);
+      })
+  }
 
   return (
     <div className={styles.container}>
@@ -21,17 +39,17 @@ export default function Home() {
         <div className={styles.inputsBox}>
           <div className={styles.inputContainer}>
             <div className={styles.label}>Email</div>
-            <input className={styles.input} type="text" />
+            <input className={styles.input} type="text" value={email} onChange={(e) => setEmail(e.target.value)}/>
             <div className={styles.underline}></div>
           </div>
           <div className={styles.inputContainer}>
             <div className={styles.label}>Password</div>
-            <input className={styles.input} type="password" />
+            <input className={styles.input} type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
             <div className={styles.underline}></div>
           </div>
         </div>
         <div className={styles.buttonContainer}>
-          <button className={styles.loginBtn} isdisabled={user ? "true" : "false"}>
+          <button className={styles.loginBtn} disabled={((email === "") || (password === "")) ? true : false} onClick={() => handleLogin()}>
             <Link href="/login"><a>SUBMIT</a></Link>
           </button>
         </div>
