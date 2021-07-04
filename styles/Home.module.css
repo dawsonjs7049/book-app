@@ -119,3 +119,10 @@
     flex-direction: column;
   }
 }
+
+
+/* Banner */
+.bannerContainer {
+    background-color: teal;
+    height: 4rem;
+}
