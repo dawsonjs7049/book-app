@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import nookies from 'nookies';
 import {verifyIdToken} from "../firebaseAdmin";
 import firebaseClient from "../firebaseClient";
@@ -7,6 +7,7 @@ import firebase from "firebase/app";
 import Banner from "../components/Banner";
 import BookSearch from '../components/BookSearch';
 import AddBookModal from '../components/AddBookModal';
+import MyLibrary from "../components/MyLibrary";
 
 
 function Home({session})
@@ -18,6 +19,7 @@ function Home({session})
 
     const [selectedBook, setSelectedBook] = useState();
     const [showAddBookModal, setShowAddBookModal] = useState(false);
+    const [myBooks, setMyBooks] = useState([]);
 
     const handleLogout = async () => {
         await firebase  
@@ -26,6 +28,24 @@ function Home({session})
 
         window.location.href = "/";
     }
+
+    useEffect(() => {
+
+        firebase   
+            .firestore()
+            .collection('books')
+            .onSnapshot(snapshot => {
+                const data = snapshot.docs.map(doc => {
+                    return {
+                        id : doc.id,
+                        data: doc.data()
+                    }
+                });
+
+                setMyBooks(data);
+            })
+
+    }, [])
 
     if(session)
     {
@@ -36,6 +56,8 @@ function Home({session})
                 <Banner handleLogout={handleLogout} />
                 <BookSearch setSelectedBook={setSelectedBook} setShowAddBookModal={setShowAddBookModal}/>
                 <AddBookModal selectedBook={selectedBook} show={showAddBookModal} setShowAddBookModal={setShowAddBookModal}/>
+            
+                <MyLibrary books={myBooks} />
             </>
         )
     }
