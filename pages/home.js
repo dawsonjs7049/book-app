@@ -17,6 +17,7 @@ function Home({session})
     const email = session.email;
 
     const [selectedBook, setSelectedBook] = useState();
+    const [showAddBookModal, setShowAddBookModal] = useState(false);
 
     const handleLogout = async () => {
         await firebase  
@@ -33,8 +34,8 @@ function Home({session})
             {console.log("UID: " + uid + " - EMAIL: " + email)}
              
                 <Banner handleLogout={handleLogout} />
-                <BookSearch setSelectedBook={setSelectedBook}/>
-                <AddBookModal selectedBook={selectedBook} />
+                <BookSearch setSelectedBook={setSelectedBook} setShowAddBookModal={setShowAddBookModal}/>
+                <AddBookModal selectedBook={selectedBook} show={showAddBookModal} setShowAddBookModal={setShowAddBookModal}/>
             </>
         )
     }
@@ -45,6 +46,8 @@ function Home({session})
         )
     }
 }
+
+// WHen you hover over search cards, have it expand to the side with a description of the book?
 
 export async function getServerSideProps(context)
 {
