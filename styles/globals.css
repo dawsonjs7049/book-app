@@ -376,6 +376,15 @@ a {
 .libraryThumbnail {
   width: 225px;
   height: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.libraryThumbnail > img {
+  height: 100%;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .libraryBody {
@@ -388,7 +397,7 @@ a {
   justify-content: space-evenly;
   overflow-y: scroll;
   padding: 1rem;
-  padding-top: 20rem;
+  padding-top: 24rem;
 }
 
 .libraryBody > div > div {
@@ -404,10 +413,47 @@ a {
   width: 100%;
   border-radius: 3px;
   border: 1px solid teal;
+  height: 2.5rem;
+  font-size: 1rem;
 }
 
 .libraryDescription {
   width: 100%;
   border: 2px solid teal;
   border-radius: 3px;
+}
+
+.libraryUpdate {
+  height: 2rem;
+  width: 35%;
+  border: 2px solid teal;
+  border-radius: 2px;
+  transition: all .5s ease-in-out;
+  font-size: 1rem;
+  color: teal;
+  font-weight: bold;
+  background-color: white;
+}
+
+.libraryEdit {
+  height: 2rem;
+  width: 35%;
+  border: 2px solid orange;
+  border-radius: 2px;
+  transition: all .5s ease-in-out;
+  font-size: 1rem;
+  color: orange;
+  font-weight: bold;
+  background-color: white;
+
+}
+
+.libraryUpdate:hover {
+  background-color: teal;
+  color: white;
+}
+
+.libraryEdit:hover {
+  background-color: orange;
+  color: white;
 }

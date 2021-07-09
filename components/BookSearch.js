@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import axios from 'axios';
-
+import StarRatingComponent from 'react-star-rating-component';
 
 function BookSearch(props) {
  
@@ -49,7 +49,14 @@ function BookSearch(props) {
                                 <div className="bookSearchDetailsContainer">
                                     <div className={'title'}>{item.volumeInfo.title}</div>
                                     <div>{item.volumeInfo.authors[0] ? item.volumeInfo.authors[0] : ''}</div> 
-                                    <div>Average Rating: {item.volumeInfo.averageRating}</div>
+                                    <div>
+                                        <StarRatingComponent 
+                                            name="rate1" 
+                                            starCount={5}
+                                            value={parseInt(item.volumeInfo.averageRating)}
+                                        />
+                                    </div>
+                                    
                                     <div>Pages: {item.volumeInfo.pageCount}</div>
                                     <div>Genre: {item.volumeInfo.categories ? item.volumeInfo.categories[0] : ''}</div>
                                     <div style={{width: '85%', height: '1.5px', backgroundColor: 'teal'}}></div>
