@@ -56,8 +56,10 @@ function Home({session})
                 <Banner handleLogout={handleLogout} />
                 <BookSearch setSelectedBook={setSelectedBook} setShowAddBookModal={setShowAddBookModal}/>
                 <AddBookModal selectedBook={selectedBook} show={showAddBookModal} setShowAddBookModal={setShowAddBookModal}/>
+         
             
                 <MyLibrary books={myBooks} />
+      
             </>
         )
     }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import StarRatingComponent from 'react-star-rating-component';
 
 import firebaseClient from "../firebaseClient";
 import firebase from "firebase/app";
@@ -19,7 +20,7 @@ function AddBookModal({selectedBook, show, setShowAddBookModal}){
         myGenre = selectedBook.volumeInfo.categories ? selectedBook.volumeInfo.categories[0] : '';
         pages = selectedBook.volumeInfo.pageCount;
         infoLink = selectedBook.volumeInfo.infoLink;
-        globalRating = selectedBook.volumeInfo.averageRating;
+        globalRating = (selectedBook.volumeInfo.averageRating ? selectedBook.volumeInfo.averageRating : 0);
     }
 
     const [image, setImage] = useState(selectedBook ? (selectedBook.volumeInfo.imageLinks.thumbnail) : '');
@@ -39,6 +40,8 @@ function AddBookModal({selectedBook, show, setShowAddBookModal}){
             setAuthor(myAuthor);
             setRating(myRating);
             setGenre(myGenre);
+            
+            console.log("IN ADD BOOK MODAL USE EFFECT");
         }
     }, [selectedBook])
 
@@ -70,8 +73,11 @@ function AddBookModal({selectedBook, show, setShowAddBookModal}){
             setImage('');
             setTitle('');
             setAuthor('');
-            setRating('');
+            setRating(0);
             setGenre('');
+            setDescription('');
+            setStartDate('');
+            setEndDate('');
             setDescription('');
     }
 
@@ -100,15 +106,22 @@ function AddBookModal({selectedBook, show, setShowAddBookModal}){
                         </div>
                         <div>
                             <div>Date Started</div>
-                            <input className={'bookModalInput'} type="date" onChange={(e) => setStartDate(e.target.value)} />
+                            <input className={'bookModalInput'} type="date" defaultValue={''} onChange={(e) => setStartDate(e.target.value)} />
                         </div>
                         <div>
                             <div>Date Finished</div>
-                            <input className={'bookModalInput'} type="date" onChange={(e) => setEndDate(e.target.value)} />
+                            <input className={'bookModalInput'} type="date" defaultValue={''} onChange={(e) => setEndDate(e.target.value)} />
                         </div>
                         <div>
                             <div>Rating</div>
-                            <input className={'bookModalInput'} type='number' defaultValue={myRating} onChange={(e) => setRating(e.target.value)} />
+                            {/* <input className={'bookModalInput'} type='number' defaultValue={myRating} onChange={(e) => setRating(e.target.value)} /> */}
+                        
+                            <StarRatingComponent 
+                                name="rate1" 
+                                starCount={5}
+                                value={parseInt(rating)}
+                                onStarClick={(nextValue, prevValue, name) => setRating(nextValue)}
+                            />
                         </div>
                     </div>
                     
@@ -118,7 +131,7 @@ function AddBookModal({selectedBook, show, setShowAddBookModal}){
                     <div style={{textAlign: 'left', fontWeight: 'bold', marginTop: '1.5rem', fontSize: '1.2rem'}}>
                         Review
                     </div>
-                    <textarea className={'bookModalDescriptionInput'} onChange={(e) => setDescription(e.target.value)} />
+                    <textarea className={'bookModalDescriptionInput'} defaultValue={''} onChange={(e) => setDescription(e.target.value)} />
                 </div>
                 <div className={'bookModalButtonContainer'}>
                     <button className="bookModalSaveButton" onClick={() => handleBookSave()}>Save</button>
