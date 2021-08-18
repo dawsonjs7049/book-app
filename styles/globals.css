@@ -22,6 +22,12 @@ a {
   box-sizing: border-box;
 }
 
+.toast {
+  height: 3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
 /* Banner */
 .bannerContainer {
     background-color: teal;
@@ -398,9 +404,11 @@ a {
 /* LIBRARY */
 .libraryContainer {
   width: 100vw;
-  padding: 1rem;
+  padding: 0;
   background-color: rgb(0, 150, 150);
   margin-top: 2rem;
+  position: absolute;
+  min-height: 100vh;
 }
 
 .libraryBar {
@@ -424,12 +432,14 @@ a {
 }
 
 .librarySearchContainer {
-  width: 75%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100vw;
+  max-width: 1470px;
+  /* opacity: .95; */
   margin: auto;
-  /* height: 3rem; */
-  /* background-color: white; */
-  border-radius: 5px;
-  /* box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 3px 15px 0 rgba(0, 0, 0, 0.19); */
+  background-color: rgb(0, 150, 150);
   margin-bottom: 2rem;
   display: flex;
   flex-direction: row;
@@ -438,7 +448,6 @@ a {
   align-items: center;
   padding-top: .5rem;
   padding-bottom: .5rem;
-
 }
 
 .librarySearchInput {
@@ -491,9 +500,7 @@ a {
 
 .libraryInputContainer {
   height: 3rem;
-  
   width: 70%;
-  /* min-width: 400px; */
   transition: all .5s ease-in-out;
 }
 
@@ -536,7 +543,7 @@ a {
   }
 
   .librarySearchContainer {
-    width: 550px;
+    width: 580px;
     flex-wrap: wrap;
   }
 
@@ -557,7 +564,7 @@ a {
   flex-wrap: nowrap;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 3px 15px 0 rgba(0, 0, 0, 0.19);
   transition: all .5s ease-in-out;
-  margin: 0 2rem 2rem 0;
+  margin-bottom: 2rem;
 }
 
 .libraryCard:hover {
@@ -567,6 +574,7 @@ a {
 
 .libraryCards {
   max-width: 1600px;
+  padding: 1rem;
   width: 100vw;
   margin: auto;
   display: flex;

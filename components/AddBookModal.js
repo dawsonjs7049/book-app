@@ -6,7 +6,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 
 
-function AddBookModal({selectedBook, show, setShowAddBookModal}){
+function AddBookModal({selectedBook, show, setShowAddBookModal, successToast}){
 
     firebaseClient();
 
@@ -40,7 +40,7 @@ function AddBookModal({selectedBook, show, setShowAddBookModal}){
             setAuthor(myAuthor);
             setRating(myRating);
             setGenre(myGenre);
-            
+
             console.log("IN ADD BOOK MODAL USE EFFECT");
         }
     }, [selectedBook])
@@ -79,6 +79,8 @@ function AddBookModal({selectedBook, show, setShowAddBookModal}){
             setStartDate('');
             setEndDate('');
             setDescription('');
+
+            successToast();
     }
 
     return (

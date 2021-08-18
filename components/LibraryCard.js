@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 
-function LibraryCard({item}) {
+function LibraryCard({item, deleteToast, updateToast}) {
     firebaseClient();
 
     const [title, setTitle] = useState('');
@@ -34,6 +34,8 @@ function LibraryCard({item}) {
                     endDate: endDate
                 }
             );
+
+        updateToast();
     }
 
     const deleteBook = () => {
@@ -42,7 +44,11 @@ function LibraryCard({item}) {
             .firestore()
             .collection('books')
             .doc(item.id)
-            .delete()
+            .delete();
+
+        deleteToast();
+
+
     }
 
     // const mouseEnter = (e) => {

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faBookmark, faBook} from '@fortawesome/free-solid-svg-icons'
 
+
 import axios from 'axios';
 import StarRatingComponent from 'react-star-rating-component';
 
@@ -10,10 +11,8 @@ function BookSearch(props) {
     const [search, setSearch] = useState('');
     const [cards, setCards] = useState([]);
 
-    let { setSelectedBook, setShowAddBookModal } = props;
+    let { setSelectedBook, setShowAddBookModal } = props;  
 
-
-        
     const handleSearch = () => {
         if(search !== '')
         {

@@ -8,7 +8,7 @@ import { faBook } from '@fortawesome/free-solid-svg-icons'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 
-function MyLibrary({books}) {
+function MyLibrary({books, deleteToast, updateToast}) {
 
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -232,7 +232,7 @@ function MyLibrary({books}) {
         {
             let select = document.getElementById('sortSelect');
             select.value = 'Title';
-            
+
             handleSort();
             // setSortedBooks([...originalBooks])
         }
@@ -276,7 +276,7 @@ function MyLibrary({books}) {
                 
                 sortedBooks ?
                     sortedBooks.map((item) => (
-                        <LibraryCard item={item} key={item.id}/>
+                        <LibraryCard item={item} key={item.id} deleteToast={deleteToast} updateToast={updateToast}/>
                     ))
                 // books.length > 0 ?
                 //     books.map((item) => (
